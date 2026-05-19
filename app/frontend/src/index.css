@@ -1,0 +1,74 @@
+"@import url(\"https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&display=swap\");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 60 5% 98%;          /* #FAFAFA stone-warm */
+    --foreground: 24 10% 10%;         /* #1C1917 */
+    --card: 0 0% 100%;
+    --card-foreground: 24 10% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 24 10% 10%;
+    --primary: 152 41% 30%;           /* #2D6A4F forest green */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 30 10% 96%;
+    --secondary-foreground: 24 10% 10%;
+    --muted: 30 10% 96%;
+    --muted-foreground: 24 6% 35%;
+    --accent: 22 50% 60%;             /* terracotta */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 70% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 24 7% 90%;
+    --input: 24 7% 90%;
+    --ring: 152 41% 30%;
+    --radius: 0.75rem;
+  }
+  body {
+    background-color: #FAFAFA;
+    color: #1C1917;
+    font-family: \"Work Sans\", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4 {
+    font-family: \"Outfit\", ui-sans-serif, system-ui, sans-serif;
+    color: #1C1917;
+    letter-spacing: -0.01em;
+  }
+  ::selection { background-color: #DAE9DE; color: #1B4332; }
+}
+
+@layer components {
+  .container-lc { @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12; }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 bg-[#2D6A4F] text-white font-medium hover:bg-[#1B4332] transition-colors;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 bg-[#F3F4F6] text-[#1C1917] font-medium hover:bg-[#E7E5E4] transition-colors;
+  }
+  .btn-terracotta {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 bg-[#D08C60] text-white font-medium hover:bg-[#BC6C25] transition-colors;
+  }
+  .card-soft {
+    @apply bg-white rounded-2xl border border-[#E7E5E4] hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-all;
+  }
+  .label-eyebrow {
+    @apply text-xs tracking-[0.18em] uppercase font-semibold text-[#57534E];
+  }
+}
+
+@layer base {
+  [data-debug-wrapper=\"true\"] { display: contents !important; }
+  [data-debug-wrapper=\"true\"] > * {
+    margin-left: inherit; margin-right: inherit; margin-top: inherit; margin-bottom: inherit;
+    padding-left: inherit; padding-right: inherit; padding-top: inherit; padding-bottom: inherit;
+    column-gap: inherit; row-gap: inherit; gap: inherit;
+    border-left-width: inherit; border-right-width: inherit; border-top-width: inherit; border-bottom-width: inherit;
+    border-left-style: inherit; border-right-style: inherit; border-top-style: inherit; border-bottom-style: inherit;
+    border-left-color: inherit; border-right-color: inherit; border-top-color: inherit; border-bottom-color: inherit;
+  }
+}
+"

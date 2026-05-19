@@ -1,0 +1,107 @@
+{
+  "project_name": "Local Connect",
+  "theme": "light",
+  "archetype": "Organic & Earthy (Archetype 1)",
+  "design_philosophy": {
+    "core": "Clean, modern, trustworthy marketplace focused on community connection.",
+    "emotion": "Warmth, calm, trust, and grounded physical connection.",
+    "anti_patterns_to_avoid": [
+      "No default SaaS blue.",
+      "No pure black #000000 or pure gray #808080. Always tint grays with warmth.",
+      "No full-screen glossy gradients.",
+      "No standard Inter font for headings."
+    ]
+  },
+  "colors": {
+    "background": {
+      "default": "#FAFAFA",
+      "surface": "#FFFFFF",
+      "surface_alt": "#F3F4F6",
+      "description": "Warm off-white background to feel physical and grounded."
+    },
+    "text": {
+      "primary": "#1C1917",
+      "secondary": "#57534E",
+      "muted": "#A8A29E",
+      "description": "Deep stone/charcoal text for high contrast (WCAG AA). Never pure black."
+    },
+    "brand": {
+      "primary": "#2D6A4F",
+      "primary_hover": "#1B4332",
+      "secondary": "#D08C60",
+      "secondary_hover": "#BC6C25",
+      "description": "Primary is Forest Green for trust, local growth. Secondary is Terracotta/Clay for warmth and action."
+    },
+    "border": "#E7E5E4",
+    "accents": {
+      "success": "#4ADE80",
+      "warning": "#FBBF24",
+      "danger": "#F87171"
+    }
+  },
+  "typography": {
+    "fonts": {
+      "heading": "'Outfit', sans-serif",
+      "body": "'Work Sans', sans-serif",
+      "description": "Outfit for approachable, modern headings. Work Sans for highly readable, utilitarian body text."
+    },
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl tracking-tight font-semibold text-[#1C1917]",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl tracking-tight font-medium text-[#1C1917]",
+      "h3": "text-xl sm:text-2xl font-medium text-[#1C1917]",
+      "body": "text-base leading-relaxed text-[#57534E]",
+      "label": "text-xs tracking-[0.15em] uppercase font-semibold text-[#57534E]"
+    }
+  },
+  "spacing_and_layout": {
+    "philosophy": "Generous spacing. 2x typical SaaS margins.",
+    "container": "max-w-7xl mx-auto px-6 sm:px-8 lg:px-12",
+    "section_gap": "py-20 lg:py-32",
+    "grid_patterns": {
+      "public_marketplace": "Bento-style or overlapping asymmetry for marketing pages. Use gap-8 to gap-12.",
+      "dashboards": "Control Room Grid. Dense, organized, gap-6. Direct grid children only. Subgrid for alignment."
+    }
+  },
+  "surfaces_and_effects": {
+    "marketing_cards": "Flat background with 1px subtle border (#E7E5E4). No heavy drop shadows. Hover: Slight lift (-translate-y-1) and soft ambient shadow.",
+    "glassmorphism": "Only for sticky headers: bg-white/70 backdrop-blur-xl border-b border-stone-200.",
+    "borders": "Soft radiuses. rounded-xl for main cards, rounded-full for pills/buttons."
+  },
+  "components": {
+    "public_pages": "Use pure HTML/Tailwind for hero, catalogs, storefronts. Avoid rigid Shadcn wrappers for creative sections.",
+    "dashboards_and_forms": "Use Shadcn UI (Forms, Tables, Dialogs, Selects) but customize them with the 'Organic & Earthy' color palette. Remove the Vercel-look.",
+    "buttons": "Primary: bg-[#2D6A4F] text-white rounded-full px-6 py-3 hover:bg-[#1B4332] transition-colors. Secondary: bg-[#F3F4F6] text-[#1C1917] hover:bg-[#E7E5E4].",
+    "data_testid": "MANDATORY on all interactive elements (e.g. data-testid=\"login-submit-btn\")."
+  },
+  "media_urls": {
+    "hero_market": {
+      "url": "https://images.unsplash.com/photo-1751857214820-26825c327dd3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDB8MHwxfHNlYXJjaHwxfHxsb2NhbCUyMHRvd24lMjBtYXJrZXR8ZW58MHx8fHwxNzc4MzQzOTU0fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Vibrant local market scene. Use in public homepage hero section with a black/30 overlay if text is on top."
+    },
+    "service_plumber": {
+      "url": "https://images.unsplash.com/photo-1676210134190-3f2c0d5cf58d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzZ8MHwxfHNlYXJjaHwyfHxwbHVtYmVyJTIwd29ya2luZ3xlbnwwfHx8fDE3NzgzNDM5NTR8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Placeholder for service catalog (e.g., local plumbing or repairs)."
+    },
+    "product_crafts": {
+      "url": "https://images.unsplash.com/photo-1622701893201-9bc9eb616690?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzB8MHwxfHNlYXJjaHwxfHxoYW5kbWFkZSUyMGNyYWZ0cyUyMGJhc2tldHxlbnwwfHx8fDE3NzgzNDM5NTR8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Placeholder for local physical products (handmade crafts/baskets)."
+    },
+    "product_vegetables": {
+      "url": "https://images.unsplash.com/photo-1751857040028-5073d73c56a0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDB8MHwxfHNlYXJjaHwzfHxsb2NhbCUyMHRvd24lMjBtYXJrZXR8ZW58MHx8fHwxNzc4MzQzOTU0fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Placeholder for local groceries."
+    }
+  },
+  "icons": {
+    "library": "lucide-react",
+    "rationale": "Default clean UI matching the earthy and modern vibe."
+  },
+  "instructions_to_main_agent": [
+    "Strictly adhere to the 'Organic & Earthy' color palette. DO NOT default to black and white with blue buttons.",
+    "For the public marketplace, build bespoke HTML/Tailwind layouts. Use grid bento concepts, wide spacing, and offset symmetry.",
+    "For Dashboards (Seller/Admin), use Shadcn UI components but heavily customize the colors to match our palette.",
+    "Every button, link, and form input MUST have a role-based data-testid attribute.",
+    "Install `@fontsource/outfit` and `@fontsource/work-sans` for typography.",
+    "Ensure hover states explicitly declare text colors to prevent contrast issues.",
+    "Utilize the media_urls provided as absolute requirements for images. Do not use generic placeholders."
+  ]
+}
