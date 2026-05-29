@@ -117,7 +117,7 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
-UPLOAD_DIR = ROOT_DIR / \"uploads\"
+UPLOAD_DIR = ROOT_DIR / "uploads"
 UPLOAD_DIR.mkdir(exist_ok=True)
 
 JWT_SECRET = os.environ['JWT_SECRET']
