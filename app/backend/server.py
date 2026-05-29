@@ -18,9 +18,99 @@ from fastapi.staticfiles import StaticFiles
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import BaseModel, Field, EmailStr, ConfigDict
-from emergentintegrations.payments.stripe.checkout import (
-    StripeCheckout, CheckoutSessionRequest
-)
+import stripe
+import asyncio
+import json
+
+class CheckoutSessionRequest:
+    def __init__(self, amount: float, currency: str, success_url: str, cancel_url: str, metadata: dict = None):
+        self.amount = amount
+        self.currency = currency
+        self.success_url = success_url
+        self.cancel_url = cancel_url
+        self.metadata = metadata or {}
+
+class StripeCheckout:
+    """
+    Clean, native Stripe handler replacing proprietary emergent wrappers.
+    Implements async executors so it won't block your FastAPI event loop.
+    """
+    def __init__(self, api_key: str, webhook_url: str = ""):
+        self.api_key = api_key
+        stripe.api_key = api_key
+        self.webhook_url = webhook_url
+
+    async def create_checkout_session(self, req: CheckoutSessionRequest):
+        amount_cents = int(round(req.amount * 100))
+        loop = asyncio.get_running_loop()
+        
+        def _create():
+            return stripe.checkout.Session.create(
+                payment_method_types=['card'],
+                line_items=[{
+                    'price_data': {
+                        'currency': req.currency,
+                        'product_data': {
+                            'name': 'Order Payment - Local Connect',
+                        },
+                        'unit_amount': amount_cents,
+                    },
+                    'quantity': 1,
+                }],
+                mode='payment',
+                success_url=req.success_url,
+                cancel_url=req.cancel_url,
+                metadata=req.metadata,
+            )
+            
+        session = await loop.run_in_executor(None, _create)
+        
+        class SessionResult:
+            def __init__(self, session_id, url):
+                self.session_id = session_id
+                self.url = url
+        return SessionResult(session_id=session.id, url=session.url)
+
+    async def get_checkout_status(self, session_id: str):
+        loop = asyncio.get_running_loop()
+        
+        def _retrieve():
+            return stripe.checkout.Session.retrieve(session_id)
+            
+        session = await loop.run_in_executor(None, _retrieve)
+        
+        class StatusResult:
+            def __init__(self, status, payment_status, amount_total, currency):
+                self.status = status
+                self.payment_status = payment_status
+                self.amount_total = float(amount_total / 100.0) if amount_total else 0.0
+                self.currency = currency
+        return StatusResult(
+            status=session.status,
+            payment_status=session.payment_status,
+            amount_total=session.amount_total,
+            currency=session.currency
+        )
+
+    async def handle_webhook(self, body: bytes, sig: str):
+        loop = asyncio.get_running_loop()
+        
+        def _parse():
+            data = json.loads(body.decode("utf-8"))
+            session = data.get("data", {}).get("object", {})
+            class WebhookResult:
+                def __init__(self, session_id, payment_status, metadata):
+                    self.session_id = session_id
+                    self.payment_status = payment_status
+                    self.metadata = metadata
+            return WebhookResult(
+                session_id=session.get("id"),
+                payment_status=session.get("payment_status"),
+                metadata=session.get("metadata", {})
+            )
+            
+        return await loop.run_in_executor(None, _parse)
+
 
 # ---------- Setup ----------
 mongo_url = os.environ['MONGO_URL']
