@@ -1,4 +1,4 @@
-"from dotenv import load_dotenv
+from dotenv import load_dotenv
 from pathlib import Path
 
 ROOT_DIR = Path(__file__).parent
@@ -934,4 +934,4 @@ app.add_middleware(
     allow_methods=[\"*\"],
     allow_headers=[\"*\"],
 )
-"
+
